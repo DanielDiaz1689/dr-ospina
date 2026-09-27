@@ -33,7 +33,7 @@
   --font-body: 'DM Sans', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
-/*@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #0c1418;
     --bg-alt: #121e24;
@@ -53,8 +53,8 @@
     --shadow-md: 0 6px 20px rgba(0,0,0,0.25);
     --shadow-lg: 0 16px 48px rgba(0,0,0,0.3);
   }
-}*/
-/*:root[data-theme="dark"] {
+}
+:root[data-theme="dark"] {
   --bg: #0c1418;
   --bg-alt: #121e24;
   --surface: #1a2a34;
@@ -72,7 +72,7 @@
   --shadow-sm: 0 1px 4px rgba(0,0,0,0.2);
   --shadow-md: 0 6px 20px rgba(0,0,0,0.25);
   --shadow-lg: 0 16px 48px rgba(0,0,0,0.3);
-}*/
+}
 
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;padding:0!important;overflow-x:hidden}
@@ -81,7 +81,7 @@ img{max-width:100%}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
 @keyframes slideRight{from{transform:translateX(-100%)}to{transform:translateX(0)}}
 .reveal{opacity:0;transform:translateY(32px);transition:opacity 0.7s cubic-bezier(0.22,1,0.36,1),transform 0.7s cubic-bezier(0.22,1,0.36,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
@@ -217,6 +217,25 @@ section{padding:100px 24px}
 .gallery-cta a{display:inline-flex;align-items:center;gap:10px;background:var(--primary);color:#fff;padding:16px 36px;border-radius:99px;font-weight:700;font-size:15px;text-decoration:none;box-shadow:0 8px 28px rgba(10,94,140,0.35);transition:all 0.3s}
 .gallery-cta a:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(10,94,140,0.4)}
 .gallery-cta p{margin-top:10px;color:rgba(255,255,255,0.5);font-size:13px}
+
+/* BEFORE/AFTER SLIDER */
+.ba-slider{position:relative;width:100%;max-width:500px;margin:0 auto;overflow:hidden;border-radius:var(--radius);cursor:col-resize;aspect-ratio:3/4;background:#0a2d3d}
+.ba-slider img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none}
+.ba-slider .ba-after{clip-path:inset(0 0 0 50%)}
+.ba-slider .ba-handle{position:absolute;top:0;bottom:0;left:50%;width:3px;background:#fff;z-index:3;transform:translateX(-50%);pointer-events:none}
+.ba-slider .ba-handle::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;background:#fff;border-radius:50%;box-shadow:0 2px 12px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center}
+.ba-slider .ba-handle::after{content:'◀ ▶';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:10px;color:#333;letter-spacing:2px;z-index:4;white-space:nowrap}
+.ba-slider-label{display:flex;justify-content:space-between;padding:8px 4px 0;font-size:11px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase}
+.ba-slider-label .before-label{color:#d4af52}
+.ba-slider-label .after-label{color:#4db8e8}
+.ba-card{text-align:center}
+.ba-card h4{font-family:var(--font-display);font-size:16px;font-weight:600;color:#fff;margin:12px 0 2px}
+.ba-card p{font-size:13px;color:rgba(255,255,255,0.6)}
+.ba-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;margin-top:48px}
+.results-stats{display:flex;justify-content:center;gap:32px;margin-top:32px;flex-wrap:wrap}
+.results-stat{text-align:center;color:#fff}
+.results-stat .stat-num{font-family:var(--font-display);font-size:28px;font-weight:700;color:#4db8e8}
+.results-stat .stat-label{font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px}
 
 /* ABOUT */
 .about{background:var(--bg-alt)}
@@ -406,7 +425,7 @@ section{padding:100px 24px}
 .wa-float{position:fixed;bottom:24px;right:24px;z-index:90;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
 .wa-float-msg{background:var(--bg-alt);color:var(--text);padding:10px 16px;border-radius:var(--radius-sm);box-shadow:var(--shadow-md);font-size:13px;font-weight:500;line-height:1.4;max-width:220px;opacity:0;transform:translateY(8px);transition:all 0.4s;pointer-events:none;border:1px solid var(--border)}
 .wa-float-msg.show{opacity:1;transform:translateY(0)}
-.wa-float-btn{width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:all 0.3s;text-decoration:none;animation:pulse 2s infinite}
+.wa-float-btn{width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:all 0.3s;text-decoration:none;animation:pulse 20s infinite}
 .wa-float-btn:hover{transform:scale(1.15);box-shadow:0 6px 28px rgba(37,211,102,0.5)}
 .wa-float-btn svg{width:26px;height:26px;fill:#fff}
 
@@ -495,7 +514,7 @@ section{padding:100px 24px}
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="#" class="logo">
-      <img src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Doctor-Juan-Cristobal-Ospina-Cirugia-Bariatrica-Laparoscopica-2-1.png" alt="Dr. Juan Cristóbal Ospina" class="logo-img" style="height:40px;width:auto;filter:hue-rotate(170deg) saturate(2.2) brightness(3.4)">
+      <img src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Doctor-Juan-Cristobal-Ospina-Cirugia-Bariatrica-Laparoscopica-2-1.png" alt="Dr. Juan Cristóbal Ospina" class="logo-img" style="height:60px;width:auto;filter:hue-rotate(170deg) saturate(1.0) brightness(1.6)">
     </a>
     <ul class="nav-links">
       <li><a href="#about">Doctor</a></li>
@@ -548,6 +567,64 @@ section{padding:100px 24px}
   </div>
 </section>
 
+<!-- RESULTS: BEFORE/AFTER SLIDERS -->
+<section class="falling-gallery" id="resultados">
+  <div class="gallery-inner">
+    <p class="section-eyebrow" style="text-align:center;color:rgba(255,255,255,0.5)">Resultados reales</p>
+    <h2 class="section-title" style="text-align:center;color:#fff">Transformaciones que hablan por sí solas</h2>
+    <p style="text-align:center;color:rgba(255,255,255,0.6);max-width:560px;margin:0 auto">Desliza la barra para ver el antes y después de cada paciente</p>
+
+    <div class="ba-grid">
+      <div class="ba-card reveal reveal-delay-1">
+        <div class="ba-slider" data-ba>
+          <img class="ba-before" src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Cirugia-bariatrica-para-perder-peso-antes.jpg.webp" alt="Antes">
+          <img class="ba-after" src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Cirugia-bariatrica-para-perder-peso-despues.jpg.webp" alt="Después">
+          <div class="ba-handle"></div>
+        </div>
+        <div class="ba-slider-label"><span class="before-label">Antes</span><span class="after-label">Después</span></div>
+        <h4>María C. — Manga Gástrica</h4>
+        <p>99 kg → 70 kg · 8 meses</p>
+      </div>
+
+      <div class="ba-card reveal reveal-delay-2">
+        <div class="ba-slider" data-ba>
+          <img class="ba-before" src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Cirugia-para-perder-peso-Antes-Pereira-1.jpg.webp" alt="Antes">
+          <img class="ba-after" src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Cirugia-para-perder-peso-Pereira-1.jpg.webp" alt="Después">
+          <div class="ba-handle"></div>
+        </div>
+        <div class="ba-slider-label"><span class="before-label">Antes</span><span class="after-label">Después</span></div>
+        <h4>Carlos R. — Bypass Gástrico</h4>
+        <p>112 kg → 78 kg · 12 meses</p>
+      </div>
+
+      <div class="ba-card reveal reveal-delay-3">
+        <div class="ba-slider" data-ba>
+          <img class="ba-before" src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Antes-y-despues-cirugia-perdida-de-peso-Dr-Juan-Cristobal-Ospina-en-Pereira-Colombia-2.png.webp" alt="Antes">
+          <img class="ba-after" src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Antes-y-Despues-05.png.webp" alt="Después">
+          <div class="ba-handle"></div>
+        </div>
+        <div class="ba-slider-label"><span class="before-label">Antes</span><span class="after-label">Después</span></div>
+        <h4>Andrea P. — Manga Gástrica</h4>
+        <p>95 kg → 65 kg · 10 meses</p>
+      </div>
+    </div>
+
+    <div class="results-stats">
+      <div class="results-stat"><div class="stat-num">+500</div><div class="stat-label">Cirugías exitosas</div></div>
+      <div class="results-stat"><div class="stat-num">98%</div><div class="stat-label">Pacientes satisfechos</div></div>
+      <div class="results-stat"><div class="stat-num">15+</div><div class="stat-label">Años de experiencia</div></div>
+    </div>
+
+    <div class="gallery-cta">
+      <a href="https://wa.me/573105978158?text=Hola%20Dr.%20Ospina,%20vi%20los%20resultados%20y%20quiero%20agendar%20una%20cita" target="_blank" rel="noopener noreferrer">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Quiero estos resultados
+      </a>
+      <p>Agenda tu valoración sin compromiso</p>
+    </div>
+  </div>
+</section>
+
 <!-- BMI CALCULATOR -->
 <section class="bmi-section" id="imc">
   <div class="bmi-inner">
@@ -591,93 +668,74 @@ section{padding:100px 24px}
   </div>
 </section>
 
-<!-- VIDEO FULLSCREEN ON SCROLL -->
-<section class="video-scroll" id="video-section">
-  <div class="video-sticky">
-    <div class="video-frame" id="videoFrame">
-      <video src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Doctor-Juan-Cristobal-Ospina-Cirugia-Bariatrica-y-Laparoscopica.mp4" muted loop playsinline preload="metadata"></video>
-      <button class="video-sound-btn" id="videoSoundBtn" aria-label="Activar sonido">
-        <svg id="iconMuted" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-        <svg id="iconUnmuted" style="display:none" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-      </button>
-      <div class="video-overlay" id="videoOverlay">
-        <h2>Cirugía de precisión que transforma vidas</h2>
-        <p>Técnica laparoscópica mínimamente invasiva con el más alto estándar de seguridad y cuidado para cada paciente.</p>
+<!-- SERVICES -->
+<section id="servicios">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-eyebrow">Servicios</p>
+      <h2 class="section-title">Procedimientos quirúrgicos</h2>
+      <p class="section-desc">Haz clic en cada procedimiento para conocer los detalles completos, fotos y beneficios.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal reveal-delay-1" onclick="openServiceModal('manga')">
+        <img class="service-img" src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Cirugia-manga-gastrica-para-bajar-de-peso-en-Pereira.jpg.webp" alt="Manga gástrica - se reduce el 80% del estómago" loading="lazy">
+        <h3>Manga Gástrica</h3>
+        <p>Se extrae el 80% del estómago por laparoscopia, reduciendo la capacidad de ingesta y generando saciedad temprana.</p>
+        <span class="service-link">Ver detalles <span>→</span></span>
       </div>
-      <div class="video-scroll-hint" id="scrollHint">
-        <span>Desliza para descubrir</span>
-        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      <div class="service-card reveal reveal-delay-2" onclick="openServiceModal('bypass')">
+        <img class="service-img" src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Cirugia-bypass-gastrico-para-bajar-de-peso-en-Pereira.jpg.webp" alt="Bypass gástrico - conexión directa al intestino" loading="lazy">
+        <h3>Bypass Gástrico</h3>
+        <p>Convierte el estómago en una bolsa pequeña conectada al intestino para una pérdida de peso efectiva.</p>
+        <span class="service-link">Ver detalles <span>→</span></span>
+      </div>
+      <div class="service-card reveal reveal-delay-3" onclick="openServiceModal('integral')">
+        <img class="service-img" src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Cirugia-bariatrica-y-laparoscopica-para-perder-peso-en-Pereira-2.jpg.webp" alt="Programa integral multidisciplinario de obesidad" loading="lazy">
+        <h3>Manejo Integral de Obesidad</h3>
+        <p>Programa multidisciplinario con nutrición, psicología y medicina interna para pérdida de peso sostenida.</p>
+        <span class="service-link">Ver detalles <span>→</span></span>
+      </div>
+      <div class="service-card reveal reveal-delay-1" onclick="openServiceModal('colecistectomia')">
+        <img class="service-img" src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Cirugia-bariatrica-y-laparoscopica-para-perder-peso-en-Pereira-3.jpg.webp" alt="Colecistectomía por laparoscopia" loading="lazy">
+        <h3>Colecistectomía</h3>
+        <p>Extracción de vesícula biliar por laparoscopia. Procedimiento ambulatorio con recuperación rápida.</p>
+        <span class="service-link">Ver detalles <span>→</span></span>
+      </div>
+      <div class="service-card reveal reveal-delay-2" onclick="openServiceModal('hernias')">
+        <img class="service-img" src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Cirugia-bariatrica-y-laparoscopica-para-perder-peso-Pereira.jpg.webp" alt="Corrección de hernias por laparoscopia" loading="lazy">
+        <h3>Corrección de Hernias</h3>
+        <p>Reparación de hernias inguinales, umbilicales e incisionales con técnica laparoscópica avanzada.</p>
+        <span class="service-link">Ver detalles <span>→</span></span>
+      </div>
+      <div class="service-card reveal reveal-delay-3" onclick="openServiceModal('otros')">
+        <img class="service-img" src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Cirugia-bypass-gastrico-para-bajar-de-peso-Pereira.jpg.webp" alt="Otros procedimientos de cirugía general" loading="lazy">
+        <h3>Otros Procedimientos</h3>
+        <p>Esplenectomía, toma de biopsias, resección de lipomas con técnicas mínimamente invasivas.</p>
+        <span class="service-link">Ver detalles <span>→</span></span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- BEFORE / AFTER GALLERY -->
-<section class="falling-gallery" id="fallingGallery">
-  <div class="gallery-inner">
-    <p class="section-eyebrow" style="text-align:center;color:rgba(255,255,255,0.5)">Resultados reales</p>
-    <h2 class="section-title" style="text-align:center;color:#fff">Antes y Después</h2>
-    <p style="text-align:center;color:rgba(255,255,255,0.6);max-width:560px;margin:0 auto">Casos reales de pacientes que transformaron su vida con cirugía bariátrica del Dr. Ospina</p>
-
-    <div class="gallery-grid">
-      <div class="gallery-pair">
-        <div class="gallery-pair-label">
-          <span class="before-label">Antes</span>
-          <span class="after-label">Después</span>
-        </div>
-        <div class="gallery-pair-imgs">
-          <img src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Cirugia-bariatrica-para-perder-peso-antes.jpg.webp" alt="Paciente antes de cirugía bariátrica" loading="lazy">
-          <img src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Cirugia-bariatrica-para-perder-peso-despues.jpg.webp" alt="Paciente después de cirugía bariátrica" loading="lazy">
-          <div class="gallery-arrow"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></div>
-        </div>
-        <div class="gallery-pair-info">
-          <h4>Manga Gástrica</h4>
-          <p>Transformación completa con acompañamiento integral</p>
-        </div>
-      </div>
-
-      <div class="gallery-pair">
-        <div class="gallery-pair-label">
-          <span class="before-label">Antes</span>
-          <span class="after-label">Después</span>
-        </div>
-        <div class="gallery-pair-imgs">
-          <img src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Cirugia-para-perder-peso-Antes-Pereira-1.jpg.webp" alt="Paciente antes de manga gástrica" loading="lazy">
-          <img src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Cirugia-para-perder-peso-Pereira-1.jpg.webp" alt="Paciente después de manga gástrica" loading="lazy">
-          <div class="gallery-arrow"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></div>
-        </div>
-        <div class="gallery-pair-info">
-          <h4>Bypass Gástrico</h4>
-          <p>Pérdida de peso sostenida con seguimiento nutricional</p>
-        </div>
-      </div>
-
-      <div class="gallery-pair">
-        <div class="gallery-pair-label">
-          <span class="before-label">Antes</span>
-          <span class="after-label">Después</span>
-        </div>
-        <div class="gallery-pair-imgs">
-          <img src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Antes-y-despues-cirugia-perdida-de-peso-Dr-Juan-Cristobal-Ospina-en-Pereira-Colombia-2.png.webp" alt="Paciente antes de procedimiento bariátrico" loading="lazy">
-          <img src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Antes-y-Despues-05.png.webp" alt="Paciente después de procedimiento bariátrico" loading="lazy">
-          <div class="gallery-arrow"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></div>
-        </div>
-        <div class="gallery-pair-info">
-          <h4>Cirugía Bariátrica Integral</h4>
-          <p>Resultado con equipo multidisciplinario</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="gallery-cta">
-      <a href="https://wa.me/573105978158?text=Hola%20Dr.%20Ospina,%20vi%20los%20resultados%20y%20quiero%20agendar%20una%20cita" target="_blank" rel="noopener noreferrer">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Quiero estos resultados
+<!-- SERVICE MODAL -->
+<div class="svc-modal-overlay" id="svcModal" onclick="if(event.target===this)closeSvcModal()">
+  <div class="svc-modal">
+    <button class="svc-modal-close" onclick="closeSvcModal()" aria-label="Cerrar"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <img class="svc-modal-img" id="svcModalImg" src="" alt="">
+    <div class="svc-modal-body">
+      <span class="svc-modal-tag" id="svcModalTag"></span>
+      <h2 id="svcModalTitle"></h2>
+      <p id="svcModalDesc"></p>
+      <p id="svcModalDesc2"></p>
+      <div class="svc-modal-benefits" id="svcModalBenefits"></div>
+      <div class="svc-modal-gallery" id="svcModalGallery"></div>
+      <a class="svc-modal-cta" id="svcModalCta" href="#" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span id="svcModalCtaText">Solicitar cita para este procedimiento</span>
       </a>
-      <p>Agenda tu valoración sin compromiso</p>
     </div>
   </div>
-</section>
+</div>
 
 <!-- ABOUT -->
 <section class="about" id="about">
@@ -777,75 +835,6 @@ section{padding:100px 24px}
   </div>
 </section>
 
-<!-- SERVICES -->
-<section id="servicios">
-  <div class="section-inner">
-    <div class="reveal">
-      <p class="section-eyebrow">Servicios</p>
-      <h2 class="section-title">Procedimientos quirúrgicos</h2>
-      <p class="section-desc">Haz clic en cada procedimiento para conocer los detalles completos, fotos y beneficios.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card reveal reveal-delay-1" onclick="openServiceModal('manga')">
-        <img class="service-img" src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Cirugia-manga-gastrica-para-bajar-de-peso-en-Pereira.jpg.webp" alt="Manga gástrica - se reduce el 80% del estómago" loading="lazy">
-        <h3>Manga Gástrica</h3>
-        <p>Se extrae el 80% del estómago por laparoscopia, reduciendo la capacidad de ingesta y generando saciedad temprana.</p>
-        <span class="service-link">Ver detalles <span>→</span></span>
-      </div>
-      <div class="service-card reveal reveal-delay-2" onclick="openServiceModal('bypass')">
-        <img class="service-img" src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Cirugia-bypass-gastrico-para-bajar-de-peso-en-Pereira.jpg.webp" alt="Bypass gástrico - conexión directa al intestino" loading="lazy">
-        <h3>Bypass Gástrico</h3>
-        <p>Convierte el estómago en una bolsa pequeña conectada al intestino para una pérdida de peso efectiva.</p>
-        <span class="service-link">Ver detalles <span>→</span></span>
-      </div>
-      <div class="service-card reveal reveal-delay-3" onclick="openServiceModal('integral')">
-        <img class="service-img" src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Cirugia-bariatrica-y-laparoscopica-para-perder-peso-en-Pereira-2.jpg.webp" alt="Programa integral multidisciplinario de obesidad" loading="lazy">
-        <h3>Manejo Integral de Obesidad</h3>
-        <p>Programa multidisciplinario con nutrición, psicología y medicina interna para pérdida de peso sostenida.</p>
-        <span class="service-link">Ver detalles <span>→</span></span>
-      </div>
-      <div class="service-card reveal reveal-delay-1" onclick="openServiceModal('colecistectomia')">
-        <img class="service-img" src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Cirugia-bariatrica-y-laparoscopica-para-perder-peso-en-Pereira-3.jpg.webp" alt="Colecistectomía por laparoscopia" loading="lazy">
-        <h3>Colecistectomía</h3>
-        <p>Extracción de vesícula biliar por laparoscopia. Procedimiento ambulatorio con recuperación rápida.</p>
-        <span class="service-link">Ver detalles <span>→</span></span>
-      </div>
-      <div class="service-card reveal reveal-delay-2" onclick="openServiceModal('hernias')">
-        <img class="service-img" src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Cirugia-bariatrica-y-laparoscopica-para-perder-peso-Pereira.jpg.webp" alt="Corrección de hernias por laparoscopia" loading="lazy">
-        <h3>Corrección de Hernias</h3>
-        <p>Reparación de hernias inguinales, umbilicales e incisionales con técnica laparoscópica avanzada.</p>
-        <span class="service-link">Ver detalles <span>→</span></span>
-      </div>
-      <div class="service-card reveal reveal-delay-3" onclick="openServiceModal('otros')">
-        <img class="service-img" src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Cirugia-bypass-gastrico-para-bajar-de-peso-Pereira.jpg.webp" alt="Otros procedimientos de cirugía general" loading="lazy">
-        <h3>Otros Procedimientos</h3>
-        <p>Esplenectomía, toma de biopsias, resección de lipomas con técnicas mínimamente invasivas.</p>
-        <span class="service-link">Ver detalles <span>→</span></span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICE MODAL -->
-<div class="svc-modal-overlay" id="svcModal" onclick="if(event.target===this)closeSvcModal()">
-  <div class="svc-modal">
-    <button class="svc-modal-close" onclick="closeSvcModal()" aria-label="Cerrar"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-    <img class="svc-modal-img" id="svcModalImg" src="" alt="">
-    <div class="svc-modal-body">
-      <span class="svc-modal-tag" id="svcModalTag"></span>
-      <h2 id="svcModalTitle"></h2>
-      <p id="svcModalDesc"></p>
-      <p id="svcModalDesc2"></p>
-      <div class="svc-modal-benefits" id="svcModalBenefits"></div>
-      <div class="svc-modal-gallery" id="svcModalGallery"></div>
-      <a class="svc-modal-cta" id="svcModalCta" href="#" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        <span id="svcModalCtaText">Solicitar cita para este procedimiento</span>
-      </a>
-    </div>
-  </div>
-</div>
-
 <!-- PROCESS -->
 <section class="process" id="proceso">
   <div class="section-inner">
@@ -874,73 +863,6 @@ section{padding:100px 24px}
         <div class="step-num">4</div>
         <h4>Cirugía</h4>
         <p>Todo listo para tu cirugía con el Dr. Ospina y su equipo médico. Técnica laparoscópica de precisión.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- RESULTS -->
-<section id="resultados">
-  <div class="section-inner">
-    <div class="section-center reveal">
-      <p class="section-eyebrow">Resultados reales</p>
-      <h2 class="section-title">Transformaciones que hablan por sí solas</h2>
-      <p class="section-desc">Cada paciente es único. Estos son algunos casos de éxito con resultados sostenidos en el tiempo.</p>
-    </div>
-    <div class="results-grid">
-      <div class="result-card reveal reveal-delay-1">
-        <div class="result-comparison">
-          <div class="result-side before">
-            <svg class="silhouette" viewBox="0 0 80 180"><ellipse cx="40" cy="50" rx="22" ry="24" fill="#a08070" opacity="0.6"/><ellipse cx="40" cy="110" rx="34" ry="50" fill="#a08070" opacity="0.5"/><ellipse cx="40" cy="25" rx="16" ry="18" fill="#a08070" opacity="0.7"/><rect x="28" y="155" width="10" height="25" rx="4" fill="#a08070" opacity="0.5"/><rect x="42" y="155" width="10" height="25" rx="4" fill="#a08070" opacity="0.5"/></svg>
-            <span class="tag">Antes</span>
-          </div>
-          <div class="result-side after">
-            <svg class="silhouette" viewBox="0 0 80 180"><ellipse cx="40" cy="55" rx="15" ry="18" fill="var(--primary)" opacity="0.5"/><ellipse cx="40" cy="110" rx="20" ry="45" fill="var(--primary)" opacity="0.4"/><ellipse cx="40" cy="25" rx="14" ry="16" fill="var(--primary)" opacity="0.6"/><rect x="30" y="150" width="8" height="28" rx="4" fill="var(--primary)" opacity="0.4"/><rect x="42" y="150" width="8" height="28" rx="4" fill="var(--primary)" opacity="0.4"/></svg>
-            <span class="tag">Después</span>
-          </div>
-          <div class="result-arrow"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
-        </div>
-        <div class="result-info">
-          <div class="result-weight">99 kg → 70 kg</div>
-          <div class="result-name">María C.</div>
-          <div class="result-desc">Manga gástrica · 8 meses</div>
-        </div>
-      </div>
-      <div class="result-card reveal reveal-delay-2">
-        <div class="result-comparison">
-          <div class="result-side before">
-            <svg class="silhouette" viewBox="0 0 80 180"><ellipse cx="40" cy="50" rx="20" ry="22" fill="#a08070" opacity="0.6"/><ellipse cx="40" cy="110" rx="30" ry="48" fill="#a08070" opacity="0.5"/><ellipse cx="40" cy="25" rx="15" ry="17" fill="#a08070" opacity="0.7"/><rect x="28" y="155" width="10" height="25" rx="4" fill="#a08070" opacity="0.5"/><rect x="42" y="155" width="10" height="25" rx="4" fill="#a08070" opacity="0.5"/></svg>
-            <span class="tag">Antes</span>
-          </div>
-          <div class="result-side after">
-            <svg class="silhouette" viewBox="0 0 80 180"><ellipse cx="40" cy="55" rx="14" ry="17" fill="var(--primary)" opacity="0.5"/><ellipse cx="40" cy="110" rx="18" ry="42" fill="var(--primary)" opacity="0.4"/><ellipse cx="40" cy="25" rx="13" ry="15" fill="var(--primary)" opacity="0.6"/><rect x="31" y="148" width="7" height="30" rx="3" fill="var(--primary)" opacity="0.4"/><rect x="42" y="148" width="7" height="30" rx="3" fill="var(--primary)" opacity="0.4"/></svg>
-            <span class="tag">Después</span>
-          </div>
-          <div class="result-arrow"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
-        </div>
-        <div class="result-info">
-          <div class="result-weight">112 kg → 78 kg</div>
-          <div class="result-name">Carlos R.</div>
-          <div class="result-desc">Bypass gástrico · 12 meses</div>
-        </div>
-      </div>
-      <div class="result-card reveal reveal-delay-3">
-        <div class="result-comparison">
-          <div class="result-side before">
-            <svg class="silhouette" viewBox="0 0 80 180"><ellipse cx="40" cy="50" rx="24" ry="26" fill="#a08070" opacity="0.6"/><ellipse cx="40" cy="110" rx="36" ry="52" fill="#a08070" opacity="0.5"/><ellipse cx="40" cy="25" rx="17" ry="19" fill="#a08070" opacity="0.7"/><rect x="26" y="155" width="12" height="25" rx="5" fill="#a08070" opacity="0.5"/><rect x="42" y="155" width="12" height="25" rx="5" fill="#a08070" opacity="0.5"/></svg>
-            <span class="tag">Antes</span>
-          </div>
-          <div class="result-side after">
-            <svg class="silhouette" viewBox="0 0 80 180"><ellipse cx="40" cy="55" rx="16" ry="19" fill="var(--primary)" opacity="0.5"/><ellipse cx="40" cy="110" rx="22" ry="46" fill="var(--primary)" opacity="0.4"/><ellipse cx="40" cy="25" rx="14" ry="16" fill="var(--primary)" opacity="0.6"/><rect x="30" y="150" width="8" height="28" rx="4" fill="var(--primary)" opacity="0.4"/><rect x="42" y="150" width="8" height="28" rx="4" fill="var(--primary)" opacity="0.4"/></svg>
-            <span class="tag">Después</span>
-          </div>
-          <div class="result-arrow"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
-        </div>
-        <div class="result-info">
-          <div class="result-weight">95 kg → 65 kg</div>
-          <div class="result-name">Andrea P.</div>
-          <div class="result-desc">Manga gástrica · 10 meses</div>
-        </div>
       </div>
     </div>
   </div>
@@ -1040,6 +962,27 @@ section{padding:100px 24px}
       <div class="faq-item reveal reveal-delay-3"><button class="faq-q" aria-expanded="false">¿La cirugía es segura?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a"><div class="faq-a-inner">La cirugía bariátrica laparoscópica es un procedimiento seguro con tasas de complicación muy bajas. Se realizan evaluaciones preoperatorias completas para minimizar cualquier riesgo.</div></div></div>
       <div class="faq-item reveal"><button class="faq-q" aria-expanded="false">¿Cuánto peso puedo perder?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a"><div class="faq-a-inner">La manga gástrica permite perder entre el 60-70% del exceso de peso, y el bypass gástrico entre el 70-80%, en los primeros 12-18 meses. Los resultados varían según el compromiso del paciente.</div></div></div>
       <div class="faq-item reveal reveal-delay-1"><button class="faq-q" aria-expanded="false">¿Qué riesgos tiene la obesidad para mi salud?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a"><div class="faq-a-inner">La obesidad incrementa significativamente el riesgo de diabetes tipo 2, hipertensión arterial, enfermedades cardiovasculares, apnea del sueño, problemas articulares y ciertos tipos de cáncer. Si tu IMC es superior a 30, consultar con un especialista puede ayudarte a prevenir estas complicaciones.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO FULLSCREEN ON SCROLL -->
+<section class="video-scroll" id="video-section">
+  <div class="video-sticky">
+    <div class="video-frame" id="videoFrame">
+      <video src="https://drjuancristobalospina.com/wp-content/uploads/2024/06/Doctor-Juan-Cristobal-Ospina-Cirugia-Bariatrica-y-Laparoscopica.mp4" muted loop playsinline preload="metadata"></video>
+      <button class="video-sound-btn" id="videoSoundBtn" aria-label="Activar sonido">
+        <svg id="iconMuted" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        <svg id="iconUnmuted" style="display:none" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+      </button>
+      <div class="video-overlay" id="videoOverlay">
+        <h2>Cirugía de precisión que transforma vidas</h2>
+        <p>Técnica laparoscópica mínimamente invasiva con el más alto estándar de seguridad y cuidado para cada paciente.</p>
+      </div>
+      <div class="video-scroll-hint" id="scrollHint">
+        <span>Desliza para descubrir</span>
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
     </div>
   </div>
 </section>
@@ -1545,4 +1488,26 @@ window.openServiceModal = openSvcModal;
     resetAuto();
   }, { passive: true });
 })();
+
+// BEFORE/AFTER SLIDERS
+document.querySelectorAll('[data-ba]').forEach(slider => {
+  const afterImg = slider.querySelector('.ba-after');
+  const handle = slider.querySelector('.ba-handle');
+  let dragging = false;
+
+  function updateSlider(x) {
+    const rect = slider.getBoundingClientRect();
+    let pct = ((x - rect.left) / rect.width) * 100;
+    pct = Math.max(2, Math.min(98, pct));
+    afterImg.style.clipPath = `inset(0 0 0 ${pct}%)`;
+    handle.style.left = pct + '%';
+  }
+
+  slider.addEventListener('mousedown', (e) => { dragging = true; updateSlider(e.clientX); });
+  window.addEventListener('mousemove', (e) => { if (dragging) updateSlider(e.clientX); });
+  window.addEventListener('mouseup', () => { dragging = false; });
+  slider.addEventListener('touchstart', (e) => { dragging = true; updateSlider(e.touches[0].clientX); }, {passive: true});
+  window.addEventListener('touchmove', (e) => { if (dragging) updateSlider(e.touches[0].clientX); }, {passive: true});
+  window.addEventListener('touchend', () => { dragging = false; });
+});
 </script>

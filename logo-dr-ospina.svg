@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 50">
+  <defs>
+    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0a5e8c"/>
+      <stop offset="100%" style="stop-color:#0f78b2"/>
+    </linearGradient>
+  </defs>
+  <text x="0" y="28" font-family="'Playfair Display', Georgia, serif" font-size="22" font-weight="700" font-style="italic" fill="url(#logoGrad)">Dr. Juan Cristóbal Ospina</text>
+  <text x="0" y="44" font-family="'DM Sans', Arial, sans-serif" font-size="9" font-weight="400" letter-spacing="2.5" fill="#4a5b6a" text-transform="uppercase">CIRUGÍA BARIÁTRICA Y LAPAROSCÓPICA</text>
+</svg>
